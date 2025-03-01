@@ -7,10 +7,7 @@ import bcrypt from "bcryptjs";
 router.post("/register",(req,res)=>{
     const { username, password } = req.body;
     
-    if (!username || !password) {
-        return res.status(400).json({ message: "Username and password required" });
-    }
-
+   
     console.log(username, password);
     res.status(200).json({ message: "User registered successfully" });
 })
