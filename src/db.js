@@ -1,29 +1,23 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
+import { DatabaseSync } from 'node:sqlite'
+const db = new DatabaseSync(':memory:')
 
-// Opens the database connection
-const db = await open({
-    filename: './database.sqlite',
-    driver: sqlite3.Database
-});
-
-
-await db.exec(`
-    CREATE TABLE IF NOT EXISTS users (
+// Execute SQL statements from strings
+db.exec(`
+    CREATE TABLE users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE,
         password TEXT
-    );
-`);
+    )
+`)
 
-await db.exec(`
-    CREATE TABLE IF NOT EXISTS todos (
+db.exec(`
+    CREATE TABLE todos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER,
-        tasks TEXT,
+        task TEXT,
         completed BOOLEAN DEFAULT 0,
         FOREIGN KEY(user_id) REFERENCES users(id)
-    );
-`);
+    )    
+`)
 
-export default db;
+export default db
