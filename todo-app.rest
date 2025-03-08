@@ -1,9 +1,9 @@
 
 
-POST  http://localhost:5001/auth/register
+POST  http://localhost:5001/auth/login
 Content-Type: application/json
 
 {
-    "username":"roshan5@gmail.com",
-    "password":"adac12321"
+    "username":"roshan@gmail.com",
+    "password":"adac1232a"
 }
